@@ -7,6 +7,7 @@ import org.testcontainers.containers.MySQLContainer;
 // Singleton containers
 public abstract class AbstractContainerBaseTest {
 
+    // definition of MySQL container
     static final MySQLContainer MY_SQL_CONTAINER;
 
     static {  // will be shared between test methods
@@ -17,6 +18,7 @@ public abstract class AbstractContainerBaseTest {
         MY_SQL_CONTAINER.start();
     }
 
+    // tell your test case to connect to my MY_SQL_CONTAINER
     @DynamicPropertySource
     public static void dynamicPropertySource(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", MY_SQL_CONTAINER::getJdbcUrl);
